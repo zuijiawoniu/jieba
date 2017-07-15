@@ -4,12 +4,11 @@ import sys
 sys.path.append("../../")
 import jieba
 jieba.enable_parallel(4)
-import jieba.posseg as pseg
 
 def cuttest(test_sent):
-    result = pseg.cut(test_sent)
-    for w in result:
-        print(w.word, "/", w.flag, ", ", end=' ')  
+    result = jieba.cut(test_sent, HMM=False)
+    for word in result:
+        print(word, "/", end=' ')
     print("")
 
 
@@ -94,7 +93,3 @@ if __name__ == "__main__":
     cuttest('两块五一套，三块八一斤，四块七一本，五块六一条')
     cuttest('小和尚留了一个像大和尚一样的和尚头')
     cuttest('我是中华人民共和国公民;我爸爸是共和党党员; 地铁和平门站')
-    cuttest('张晓梅去人民医院做了个B超然后去买了件T恤')
-    cuttest('AT&T是一件不错的公司，给你发offer了吗？')
-    cuttest('C++和c#是什么关系？11+122=133，是吗？PI=3.14159')
-    cuttest('你认识那个和主席握手的的哥吗？他开一辆黑色的士。')
